@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Attendance Tracker</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      transition: background-color 0.5s, color 0.5s;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .dark-theme {
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      color: #ffffff;
+    }
+
+    .light-theme {
+      background: linear-gradient(135deg, #ffffff, #e3e3e3);
+      color: #212529;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 40px 0 10px;
+      text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    h3 {
+      text-align: center;
+      margin: 10px;
+    }
+
+    #student-table {
+      width: 90%;
+      margin: auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    }
+
+    #student-table th, #student-table td {
+      vertical-align: middle;
+    }
+
+    #student-table tr:hover {
+      background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    .btn {
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    #reset-btn {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    #theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      z-index: 10;
+    }
+
+    .form-check-label {
+      margin-left: 10px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body class="dark-theme" id="theme-body">
+
+ 
+  <div id="theme-toggle" class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="themeSwitch" onchange="toggleTheme()">
+    <label class="form-check-label text-white" for="themeSwitch" id="themeLabel">Light Mode</label>
+  </div>
+
+  <h1>Student Attendance Tracker</h1>
+  <p class="text-center text-info">       
+    💡 Press <strong>R</strong> to reset | Press <strong>T</strong> to toggle theme
+  </p>
+
+  <h3 id="count">Present: 0 | Absent: 0</h3>
+  <h3 id="absent-list">Absent Roll Numbers: None</h3>
+
+  
+  <div id="reset-btn">
+    <button onclick="resetAttendance()" class="btn btn-outline-warning px-4 py-2">Reset Attendance</button>
+  </div>
+
+  <script>
+    const students = [
+      { name: "Aarav Mehta" },
+      { name: "Zoya Khan" },
+      { name: "Ishaan Verma" },
+      { name: "Mira Joshi" },
+      { name: "Aditya Nair" },
+      { name: "Tara Desai" },
+      { name: "Rohan Malhotra" },
+      { name: "Ananya Patel" },
+      { name: "Kabir Chauhan" },
+      { name: "Sneha Reddy" }
+    ];
+
+    let present = 0;
+    let absent = 0;
+    let absentRollNumbers = [];
+
+   
+    document.write("<div class='table-responsive'><table class='table table-striped table-bordered table-hover text-center' id='student-table'>");
+    document.write("<thead class='table-dark'><tr>");
+    document.write("<th>Sr.No</th><th>Student Name</th><th>Status</th><th>Present</th><th>Absent</th>");
+    document.write("</tr></thead><tbody>");
+
+    for (let i = 0; i < students.length; i++) {
+      document.write("<tr>");
+      document.write("<th>" + (i + 1) + "</th>");
+      document.write("<td>" + students[i].name + "</td>"); 
+      document.write("<td id='status-" + i + "'><span class='badge bg-secondary'>Not Marked</span></td>");
+      document.write("<td><button id='present-" + i + "' onclick='markAttendance(" + i + ", true)' class='btn btn-success' title='Mark Present'>Present</button></td>");
+      document.write("<td><button id='absent-" + i + "' onclick='markAttendance(" + i + ", false)' class='btn btn-danger' title='Mark Absent'>Absent</button></td>");
+      document.write("</tr>");
+    }
+
+    document.write("</tbody></table></div>");
+
+    
+    function markAttendance(index, isPresent) {
+      document.getElementById("present-" + index).disabled = true;
+      document.getElementById("absent-" + index).disabled = true;
+
+      let statusCell = document.getElementById("status-" + index);
+
+      if (isPresent) {
+        statusCell.innerHTML = "<span class='badge bg-success'>Present</span>";
+        present++;
+      } else {
+        statusCell.innerHTML = "<span class='badge bg-danger'>Absent</span>";
+        absent++;
+        absentRollNumbers.push(index + 1);
+        updateAbsentList();
+      }
+
+      document.getElementById("count").innerText = "Present: " + present + " | Absent: " + absent;
+    }
+
+    
+    function updateAbsentList() {
+      var text = absentRollNumbers.length === 0
+        ? "Absent Roll Numbers: None"
+        : "Absent Roll Numbers: " + absentRollNumbers.join(", ");
+      document.getElementById("absent-list").innerText = text;
+    }
+
+   
+    function resetAttendance() {
+      present = 0;
+      absent = 0;
+      absentRollNumbers = [];
+
+      for (var i = 0; i < students.length; i++) {
+        document.getElementById("present-" + i).disabled = false;
+        document.getElementById("absent-" + i).disabled = false;
+        document.getElementById("status-" + i).innerHTML = "<span class='badge bg-secondary'>Not Marked</span>";
+      }
+
+      document.getElementById("count").innerText = "Present: 0 | Absent: 0";
+      document.getElementById("absent-list").innerText = "Absent Roll Numbers: None";
+    }
+
+   
+    function toggleTheme() {
+      var body = document.getElementById("theme-body");
+      var label = document.getElementById("themeLabel");
+
+      if (body.classList.contains("dark-theme")) {
+        body.classList.remove("dark-theme");
+        body.classList.add("light-theme");
+        label.classList.remove("text-white");
+        label.classList.add("text-dark");
+        label.innerText = "Dark Mode";
+      } else {
+        body.classList.remove("light-theme");
+        body.classList.add("dark-theme");
+        label.classList.remove("text-dark");
+        label.classList.add("text-white");
+        label.innerText = "Light Mode";
+      }
+    }
+
+    
+    document.addEventListener("keydown", function (e) {
+      if (e.key === 'r' || e.key === 'R') {
+        resetAttendance();
+      }
+      if (e.key === 't' || e.key === 'T') {
+        toggleTheme();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="Click">CLICK</button>
+    <button id="Double_click">DOUBLE CLICK</button>
+    <button id="Mouse_up">MOUSE UP</button>
+    <button id="Mouse_over">MOUSE OVER</button>
+    <button id="Mouse_down">MOUSE DOWN</button>
+    
+    <h1 id = "test"></h1>
+    <script>
+       
+            Click.addEventListener("click",()=>{
+            test.innerHTML = "CLICKED"
+        });
+
+            Double_click.addEventListener("dblclick",()=>{
+            test.innerHTML = "DOUBLE CLICKED"
+        });
+
+        Mouse_up.addEventListener("mouseup",()=>{
+            test.innerHTML = "MOUSE UP"
+        });
+
+        Mouse_over.addEventListener("mouseover",()=>{
+            test.innerHTML = "MOUSE OVER"
+        });
+
+        Mouse_down.addEventListener("mousedown",()=>{
+            test.innerHTML = "MOUSE DOWN"
+        });
+        
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body onkeydown="checkKey(event)" onkeyup="changeBG()">
+
+<h2>Type something</h2>
+<p id="msg"></p>
+
+<script>
+function checkKey(e) {
+  let char = e.key.toLowerCase();
+  if ("aeiou".includes(char)) {
+    document.getElementById("msg").innerText = "Vowel pressed: " + char;
+  } else {
+    document.getElementById("msg").innerText = "Key pressed: " + char;
+  }
+}
+
+function changeBG() {
+  document.body.style.backgroundColor = "lightblue";
+}
+</script>
+
+</body>
+</html>

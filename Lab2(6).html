@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number to Words</title>
+</head>
+<body>
+    <script>
+        var n = parseInt(prompt("Enter a number between 0 and 999"));
+        var res = '';
+
+        var ones = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+        var teens = ['Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+        var tens = ['Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+        if (isNaN(n)) {
+            document.write("Not a number");
+        } else if (n < 0 || n > 999) {
+            document.write("Out of range");
+        } else if (n === 0) {
+            document.write("Zero");
+        } else {
+            if (Math.floor(n / 100) > 0) {
+                res += ones[Math.floor(n / 100) - 1] + " Hundred ";
+                n = n % 100;
+            }
+
+            if (n >= 11 && n <= 19) {
+                res += teens[n - 11];
+            } else {
+                if (Math.floor(n / 10) > 0) {
+                    res += tens[Math.floor(n / 10) - 1] + " ";
+                }
+                if (n % 10 > 0 && Math.floor(n / 10) !== 1) {
+                    res += ones[(n % 10) - 1];
+                }
+            }
+
+            document.write(res);
+        }
+    </script>
+</body>
+</html>

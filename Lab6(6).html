@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Validate Form</title>
+</head>
+<body>
+    
+     <form name="loginform">
+        <p>
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter username" >
+            <span id="errormsgforusername"></span>
+        </p>
+        <p>
+             <label for="password">Password:</label>
+             <input type="password" id="password" placeholder="Enter password">
+             <span id="errormsgforpassword"></span>
+        </p>
+        <p>
+              <label for="repeatpword">Confirm password: </label>
+             <input type="password" id="repeatpword" placeholder="Confirm password">
+             <span id="errormsgforpconfirmassword"></span>
+        </p>
+         <p>
+              <label for="age">Age:</label>
+              <input type="date" id="age" placeholder="Enter age">
+              <span id="errormsgforage"></span>
+         </p>
+         <p>
+             <label for="enrollmentno">Enrollment No:</label>
+             <input type="number" id="enrollmentno">
+             <span id="errormsgforenrollmentno"></span>
+         </p>
+         <p>
+             <label for="email">Email:</label>
+             <input type="text" id="email">
+             <span id="errormsgforemail"></span>
+         </p>
+        <button id="Error">Submit</button>
+    </form>
+
+     <script>
+        // function f(event){
+            document.getElementById("username").addEventListener("blur",()=>{
+            uname = document.getElementById("username").value
+            if(uname.length<8){
+                errormsgforusername.innerHTML = "Username must contain 8 characters"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+        // }
+        document.getElementById("password").addEventListener("blur",()=>{
+            pname = document.getElementById("password").value
+            if(pname.length<5){
+                errormsgforpassword.innerHTML = "Password must contain 5 characters"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+        document.getElementById("repeatpword").addEventListener("blur",()=>{
+            rname = document.getElementById("repeatpword").value
+            if(rname.length<5){
+                errormsgforrepeatpassword.innerHTML = "Password is repeated"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+        document.getElementById("age").addEventListener("blur",()=>{
+            agename = document.getElementById("age").value
+            if(agename.length<5){
+                errormsgforusername.innerHTML = "Enter Age"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+        document.getElementById("enrollmentno").addEventListener("blur",()=>{
+            enname = document.getElementById("enrollemntno").value
+            if(enname.length<11){
+                errormsgforenrollmentno.innerHTML = "Enrollment Number must contain 11 characters"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+        document.getElementById("email").addEventListener("blur",()=>{
+            ename = document.getElementById("email").value
+            if(ename.length<5){
+                errormsgforemail.innerHTML = "Email must contain 5 characters"
+                username.style.border = "red"
+                errormsgforusername.style.color = "red"
+            }
+        });
+     </script>
+         
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Form Validation</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f0f0f0;
+      padding: 30px;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0 2px 0;
+      box-sizing: border-box;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<form onsubmit="return validateForm()">
+  <h2>Registration Form</h2>
+
+  <label>Username:</label>
+  <input type="text" id="username" />
+  <span id="errname" class="error"></span>
+
+  <label>Password:</label>
+  <input type="password" id="password" />
+  <span id="errpass" class="error"></span>
+
+  <label>Repeat Password:</label>
+  <input type="password" id="repeatPassword" />
+  <span id="errrepeat" class="error"></span>
+
+  <label>Date of Birth:</label>
+  <input type="date" id="dob" />
+  <span id="errdob" class="error"></span>
+
+  <label>Enrollment Number:</label>
+  <input type="text" id="enrollment" />
+  <span id="errenroll" class="error"></span>
+
+  <label>Email:</label>
+  <input type="text" id="email" />
+  <span id="erremail" class="error"></span>
+
+  <br><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+function validateForm() {
+  // Get values
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+  const repeatPassword = document.getElementById("repeatPassword").value;
+  const dob = new Date(document.getElementById("dob").value);
+  const enrollment = document.getElementById("enrollment").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  // Clear all error spans
+  document.getElementById("errname").innerText = "";
+  document.getElementById("errpass").innerText = "";
+  document.getElementById("errrepeat").innerText = "";
+  document.getElementById("errdob").innerText = "";
+  document.getElementById("errenroll").innerText = "";
+  document.getElementById("erremail").innerText = "";
+
+  let valid = true;
+
+  // 1. Username
+  if (username.length < 8) {
+    document.getElementById("errname").innerText = "Username must be at least 8 characters.";
+    valid = false;
+  }
+
+  // 2. Password format
+  const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,12}$/;
+  if (!passwordRegex.test(password)) {
+    document.getElementById("errpass").innerText = "Password must be 8–12 chars with 1 digit & 1 special char.";
+    valid = false;
+  }
+
+  // 3. Match passwords
+  if (password !== repeatPassword) {
+    document.getElementById("errrepeat").innerText = "Passwords do not match.";
+    valid = false;
+  }
+
+  // 4. Age check
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+  if (isNaN(age) || age < 18) {
+    document.getElementById("errdob").innerText = "You must be at least 18 years old.";
+    valid = false;
+  }
+
+  // 5. Enrollment format
+  const enrollmentRegex = /^\d{11}$/;
+  if (!enrollmentRegex.test(enrollment)) {
+    document.getElementById("errenroll").innerText = "Enrollment must be exactly 11 digits.";
+    valid = false;
+  }
+
+  // 6. Email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    document.getElementById("erremail").innerText = "Enter a valid email address.";
+    valid = false;
+  }
+
+  if (valid) alert("Form submitted successfully!");
+  return valid;
+}
+</script>
+
+</body>
+</html>

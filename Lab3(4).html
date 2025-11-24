@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Quick Sort function without using push
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    var pivot = arr[arr.length - 1];
+    var left = new Array(arr.length);
+    var right = new Array(arr.length);
+    var leftIndex = 0, rightIndex = 0;
+
+    for (var i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left[leftIndex] = arr[i];
+            leftIndex++;
+        } else {
+            right[rightIndex] = arr[i];
+            rightIndex++;
+        }
+    }
+
+    // Slice to remove unused elements
+    var sortedLeft = quickSort(left.slice(0, leftIndex));
+    var sortedRight = quickSort(right.slice(0, rightIndex));
+
+    // Concatenate manually
+    var result = new Array(sortedLeft.length + 1 + sortedRight.length);
+    var index = 0;
+
+    for (var i = 0; i < sortedLeft.length; i++) {
+        result[index++] = sortedLeft[i];
+    }
+
+    result[index++] = pivot;
+
+    for (var i = 0; i < sortedRight.length; i++) {
+        result[index++] = sortedRight[i];
+    }
+
+    return result;
+}
+
+// Get user input
+var input = prompt("Enter numbers separated by commas (e.g., 5,3,8,4,2):");
+
+// Convert string to array manually
+var temp = "";
+var arr = [];
+var j = 0;
+for (var i = 0; i <= input.length; i++) {
+    if (input[i] === "," || i === input.length) {
+        arr[j] = parseInt(temp);
+        temp = "";
+        j++;
+    } else {
+        temp += input[i];
+    }
+}
+
+// Perform Quick Sort
+var sortedArray = quickSort(arr);
+
+// Show result
+alert("Sorted Array: " + sortedArray.join(", "));
+console.log("Sorted Array:", sortedArray);
+
+    </script>
+</body>
+</html>

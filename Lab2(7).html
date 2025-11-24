@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Find 'a' Positions</title>
+</head>
+<body>
+    <script>
+        word = prompt("Enter a word:")
+        first = word.indexOf('a')
+        last = word.lastIndexOf('a')
+
+        if (first == -1) {
+            document.write("The letter 'a' is not found in the word.")
+        } else if (first == last) {
+            document.write("Only one 'a' found at position " + (first + 1))
+        } else {
+            between = word.substring(first + 1, last)
+            document.write("First 'a' at position: " + (first + 1) + "<br>")
+            document.write("Last 'a' at position: " + (last + 1) + "<br>")
+            document.write("String between them: " + between)
+        }
+    </script>
+</body>
+</html>

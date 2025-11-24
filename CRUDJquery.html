@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    <center><h1>CRUD OPERATION</h1></center>
+<form>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Enter Roll No</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Name</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Department</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">ImageURL</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button type="submit" class="btn btn-primary">Add Student</button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Roll No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody id="displayData">
+    
+  </tbody>
+</table>
+
+
+
+
+<script>
+    students=[
+        {
+            rollNo:101,
+            name:"Anastasiya Deep",
+            dept:"Computer",
+            imageURL:"https://www.pexels.com/photo/woman-standing-in-hallway-while-holding-book-1462630/"
+        },
+        {
+            rollNo:102,
+            name:"Andrea Mathew",
+            dept:"Law",
+            imageURL:"https://www.pexels.com/photo/woman-in-yellow-jacket-holding-books-3762800/"
+        }
+    ]
+
+    $(document).ready(function(){
+        console.log(displayData());
+    })
+
+
+    function displayData(){
+        let formattedData = students.map((s)=>{
+         temp +=`<tr>
+    
+      <td>${s.rollNo}</td>
+      <td>${s.name}</td>
+      <td>${s.dept}</td>
+      <td><image src = '${s.imageURL}'></td>
+    </tr>`
+    return temp;
+    })
+    let finalData = formatedData.join("");
+    $("#DisplayData").html(finalData);
+}
+
+
+
+     
+    
+    // function displayData(){
+    //   let formatedData = students.map((s)=>{
+    //     let temp = "<tr>";
+    //       temp += "<td>"+ s.rollNo +"</td>";
+    //       temp += "<td>"+ s.name +"</td>";
+    //       temp += "<td>"+ s.dept +"</td>";
+    //       temp += "<td><img width='50px' src='"+ s.imageUrl +"'/></td>";
+    //       temp += "<td><button onclick='deleteStudent("+s.rollNo+")'>Delete</button></td>"
+    //     temp += "</tr>";
+    //     return temp;
+    //   });
+
+    //   let finalData = "<table border=1>"+formatedData.join("")+"</table>";
+    //   $("#dataDisplay").html(finalData);
+    // }
+</script>
+</body>
+</html>

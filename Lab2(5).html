@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power without Variable</title>
+</head>
+<body>
+    <script>
+        num = prompt("Enter a 2-digit number:")
+
+        if (isNaN(num) || num.length != 2) {
+            document.write("Please enter a valid 2-digit number.")
+        } else {
+            digit1 = parseInt(num.charAt(0))
+            digit2 = parseInt(num.charAt(1))
+            result = 1
+            for (i = 0; i < digit2; i++) {
+                result = result * digit1
+            }
+            document.write(digit1 + " raised to power " + digit2 + " is: " + result)
+        }
+    </script>
+</body>
+</html>

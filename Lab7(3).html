@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function greet(name = "Guest") {
+  console.log("Hello, " + name + "!");
+}
+
+greet("Kavya");    
+greet();   
+
+
+function multiply(a = 2, b = 3) {
+  console.log("Multiplication:", a * b);
+}
+
+multiply(4, 5);    
+multiply(7);       
+multiply(); 
+
+
+function power(base = 2, exponent = base) {
+  console.log(`${base} ^ ${exponent} =`, Math.pow(base, exponent));
+}
+
+power(3, 4);       
+power(5);         
+power();           
+
+
+function showDetails({ name = "Unknown", age = 0 } = {}) {
+  console.log("Name:", name);
+  console.log("Age:", age);
+}
+
+showDetails({ name: "Meera", age: 22 });
+
+
+showDetails({ name: "Nina" });
+
+
+showDetails();
+
+
+function sayHello(name = "Guest") {
+  console.log("Hi " + name);
+}
+
+sayHello(undefined);  
+sayHello(null);       
+
+
+
+
+    </script>
+</body>
+</html>

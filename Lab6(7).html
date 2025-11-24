@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="name"></label>
+    <input type="text" id="username"><button onclick="addstudent()" id="btn">ADD</button>
+    <br><br>
+    <table border="2">
+        <thead>
+            <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="tlbody">
+
+        </tbody>
+    </table>
+
+
+    <script>
+        arr = [];
+        editindex = -1;
+        
+        
+        function display(){
+            temp='';
+            for(i=0;i<arr.length;i++){
+                temp+=
+                `<tr><td>${i+1}</td>
+                <td>${arr[i]}</td>
+                <td><button onclick="updateStudent(${i})">EDIT</button><button onclick=deleteStudent()>DELETE</button></td>
+                </tr>`
+
+                
+            }
+            document.getElementById("tlbody").innerHTML = temp
+        }
+
+        function addstudent(){
+            uname = document.getElementById("username").value; 
+            if(editindex!=-1){
+                arr[editindex] = uname;
+                editindex = -1;
+                btn.innerHTML = "Add"
+                
+            }
+            else{
+                 if(uname==""){
+                alert("Please enter name:")
+            }
+
+            else{
+                arr.push(uname);
+                
+            }
+            }
+            
+           
+            document.getElementById("username").value=""
+            display();
+        }
+
+        function deleteStudent(index){
+          arr.splice(index,1) 
+          display()
+        }
+
+        function updateStudent(idx){ 
+            
+            editindex = idx
+           document.getElementById("username").value = arr[idx]; 
+            btn.innerHTML = "EDIT"
+           
+        }
+
+    </script>
+</body>
+</html>

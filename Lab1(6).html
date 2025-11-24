@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         number = parseInt(prompt("Enter number"))
+         power = 0
+         temp = number
+         digits = number.toString().length
+         
+         while(temp>0){
+            digit = temp%10
+            sum = Math.floor(pow(digit,digits))
+            temp = Math.floor(temp/10)
+         }
+
+         if(number==sum){
+            document.write("Number is armstrong")
+         }else{
+            document.write("Number is not armstrong")
+         }
+
+         
+    </script>
+</body>
+</html>

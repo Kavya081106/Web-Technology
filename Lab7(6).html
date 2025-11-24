@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const colors = ["red", "green", "blue"];
+const [first, second, third] = colors;
+console.log(first);  
+console.log(second); 
+console.log(third);  
+
+
+const numbers = [10, , 30];
+const [a = 1, b = 2, c = 3] = numbers;
+console.log(a);  
+console.log(b);  
+console.log(c);  
+
+
+const person = {
+  name: "Ravi",
+  age: 25,
+  city: "Delhi"
+};
+
+const { name, age, city } = person;
+console.log(name);  
+console.log(age);   
+console.log(city);  
+
+
+const student = {
+  id: 101,
+  branch: "CSE"
+};
+
+const { id, branch, grade = "A" } = student;
+console.log(id);     
+console.log(branch); 
+console.log(grade);  
+
+
+
+const employee = {
+  empId: 501,
+  details: {
+    dept: "HR",
+    salary: 50000
+  }
+};
+
+const {
+  empId,
+  details: { dept, salary }
+} = employee;
+
+console.log(empId); 
+console.log(dept);  
+console.log(salary);
+
+    </script>
+</body>
+</html>

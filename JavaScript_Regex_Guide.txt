@@ -1,0 +1,82 @@
+============= JavaScript Regular Expressions (RegEx) =============
+
+=> What is RegEx?:
+   A Regular Expression (RegEx) is a pattern used to match character combinations in strings.
+   It is used for validation, searching, replacing, and parsing text.
+
+
+=> For Practice:
+   https://regexr.com/
+
+
+=> Creating a RegEx in JavaScript:
+   Syntax:
+   1. Using RegEx Literal:
+      let pattern = /Kishan/;
+
+   2. Using RegExp Constructor:
+      let pattern = new RegExp("Kishan");
+
+=> How to use
+  Step 1: Create a pattern
+           let pattern = /^[a-zA-Z0-9._]+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/;
+
+  Step 2: Create RegExp object using constructor
+           let emailRegex = new RegExp(pattern);
+
+  Step 3: Use .test() to check a sample email
+           let email = "kishan123@gmail.com";
+           if (emailRegex.test(email)) 
+	   {
+          	console.log("Valid email address");
+           } 
+	   else 
+	   {
+    		console.log("Invalid email address");
+	   }
+
+
+=> Common RegEx Patterns:
+   .           : Matches any character except newline
+   \d          : Matches any digit (0-9)
+   \D          : Matches any non-digit
+   \w          : Matches any word character (a-z, A-Z, 0-9, _)
+   \W          : Matches any non-word character
+   \s          : Matches whitespace
+   ^           : Matches start of string
+   $           : Matches end of string
+   [...]       : Matches any character inside brackets
+   [^...]      : Matches any character NOT inside brackets
+   a|b         : Matches either 'a' or 'b'
+   *           : Matches 0 or more times
+   +           : Matches 1 or more times
+   {n}         : Matches exactly n times
+   {n,}        : Matches at least n times
+   {n,m}       : Matches between n and m times
+   ?           : Optional (0 or 1 occurrence)
+   ()          : Groups expressions
+
+
+=> Examples:
+   1) Email            : /^[a-zA-Z0-9._]+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/
+   2) Password         : /^(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,12}$/   --> 8–12 chars, 1 digit, 1 special
+   3) Only letters     : /^[a-zA-Z]+$/
+   4) Only digits      : /^\d+$/
+   5) 10-digit mobile  : /^\d{10}$/
+
+
+=> More Examples:
+   a?             : Zero or one of a
+   a*             : Zero or more of a
+   a+             : One or more of a
+   [0-9]+         : One or more of 0-9
+   a{3}           : Exactly 3 of a
+   a{3,}          : 3 or more of a
+   a{3,6}         : Between 3 and 6 of a
+   [abc]          : A single character of: a, b or c
+   [^abc]         : A character except: a, b or c
+   [a-z]          : A character in the range: a-z
+   [^a-z]         : A character not in the range: a-z
+   [0-9]          : A digit in the range: 0-9
+   [a-zA-Z]       : A character in the range: a-z or A-Z
+   [a-zA-Z0-9]    : A character in the range: a-z, A-Z or 0-9
